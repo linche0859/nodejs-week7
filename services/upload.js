@@ -16,7 +16,6 @@ const uploadImgur = async (buffer) => {
     type: 'base64',
     album: process.env.IMGUR_ALBUM_ID,
   });
-  console.log(response);
   return response.data.link;
 };
 
