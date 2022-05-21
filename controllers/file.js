@@ -1,4 +1,3 @@
-const sharp = require('sharp');
 const sizeOf = require('image-size');
 const { getHttpResponseContent } = require('../services/response');
 const { asyncHandleError, appError } = require('../services/error');
@@ -18,8 +17,7 @@ const file = {
         return next(appError(400, '圖片寬高比必需為 1:1，請重新輸入'));
       }
     }
-    const buffer = await sharp(file.buffer).png().toBuffer();
-    const link = await uploadImgur(buffer);
+    const link = await uploadImgur(file.buffer);
     res.status(201).json(getHttpResponseContent(link));
   }),
 };
