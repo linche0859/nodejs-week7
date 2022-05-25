@@ -20,6 +20,7 @@ const doc = {
     { name: 'Users', description: '會員相關' },
     { name: 'Tracks', description: '追蹤相關' },
     { name: 'Files', description: '上傳檔案相關' },
+    { name: 'Auth', description: '第三方登入相關' },
   ],
   definitions,
   securityDefinitions: {

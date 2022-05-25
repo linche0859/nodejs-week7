@@ -9,13 +9,15 @@ const { appError } = require('./services/error');
 const errorMiddleware = require('./middlewares/handle-error');
 
 require('dotenv').config();
-require('./connections');
+require('./connections/mongoose');
+require('./connections/passport');
 require('./services/process');
 
 const userRouter = require('./routes/user');
 const postRouter = require('./routes/post');
 const trackRouter = require('./routes/track');
 const fileRouter = require('./routes/file');
+const authRouter = require('./routes/auth');
 
 const app = express();
 
@@ -39,6 +41,7 @@ app.use(userRouter);
 app.use(postRouter);
 app.use(trackRouter);
 app.use(fileRouter);
+app.use(authRouter);
 app.use(`/api/doc`, swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // catch 404 and forward to error handler

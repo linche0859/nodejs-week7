@@ -29,6 +29,10 @@ const schema = new Schema(
       default: 'male',
       enum: ['male', 'female'],
     },
+    googleId: {
+      type: String,
+      select: false,
+    },
   },
   { versionKey: false }
 );

@@ -23,6 +23,10 @@
     {
       "name": "Files",
       "description": "上傳檔案相關"
+    },
+    {
+      "name": "Auth",
+      "description": "第三方登入相關"
     }
   ],
   "schemes": [
@@ -1282,6 +1286,62 @@
             "apiKeyAuth": []
           }
         ]
+      }
+    },
+    "/auth/google": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Google 帳號登入",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "302": {
+            "description": "導頁成功",
+            "schema": {
+              "type": "string",
+              "example": "導頁至 Google 登入頁面",
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "導頁失敗",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/auth/google/callback": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "已授權的 Google 帳號導向",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "302": {
+            "description": "導向成功",
+            "schema": {
+              "type": "string",
+              "example": "導頁至前台位置",
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "導向失敗",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
       }
     }
   },
