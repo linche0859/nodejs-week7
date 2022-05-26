@@ -121,6 +121,70 @@ router.get('/posts/:userId/user', auth, (req, res, next) =>
    */
   PostController.getUserPosts(req, res, next)
 );
+router.get('/post/:postId', auth, (req, res, next) =>
+  /**
+   * #swagger.tags = ['Posts']
+   * #swagger.summary = '取得特定的貼文'
+   * #swagger.security = [{
+      "apiKeyAuth": [] 
+    }]
+   */
+  /**
+    #swagger.parameters['Authorization'] = {
+      in: 'header',
+      description: 'JSON Web Token',
+      schema: {
+        $Authorization: '',
+      }
+    }
+    #swagger.parameters['postId'] = { 
+      description: '貼文編號',
+    }
+   */
+  /**
+    #swagger.responses[200] = {
+      description: '取得特定的貼文成功',
+      schema: { $ref: '#/definitions/Post' }
+    }
+    #swagger.responses[400] = {
+      description: '取得特定的貼文失敗',
+      schema: { $ref: '#/definitions/Error' }
+    }
+   */
+  PostController.getSpecificPost(req, res, next)
+);
+router.get('/post/:postId/check', auth, (req, res, next) =>
+  /**
+   * #swagger.tags = ['Posts']
+   * #swagger.summary = '驗證是否為有效的貼文'
+   * #swagger.security = [{
+      "apiKeyAuth": [] 
+    }]
+   */
+  /**
+    #swagger.parameters['Authorization'] = {
+      in: 'header',
+      description: 'JSON Web Token',
+      schema: {
+        $Authorization: '',
+      }
+    }
+    #swagger.parameters['postId'] = { 
+      description: '貼文編號',
+    }
+   */
+  /**
+    #swagger.responses[200] = {
+      description: '驗證成功',
+      schema: 'OK'
+    }
+    #swagger.responses[400] = {
+      description: '驗證失敗',
+      schema: { $ref: '#/definitions/Error' }
+    }
+   */
+  PostController.checkPost(req, res, next)
+);
 router.post('/post', auth, (req, res, next) =>
   /**
    * #swagger.tags = ['Posts']

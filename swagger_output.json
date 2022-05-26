@@ -256,13 +256,8 @@
           "200": {
             "description": "驗證成功",
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "type": "string",
-                  "example": "OK"
-                }
-              },
+              "type": "string",
+              "example": "OK",
               "xml": {
                 "name": "main"
               }
@@ -656,6 +651,179 @@
         ]
       }
     },
+    "/post/{postId}": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "取得特定的貼文",
+        "description": "",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "貼文編號"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JSON Web Token",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Authorization": {
+                  "type": "string",
+                  "example": ""
+                }
+              },
+              "required": [
+                "Authorization"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "取得特定的貼文成功",
+            "schema": {
+              "$ref": "#/definitions/Post"
+            }
+          },
+          "400": {
+            "description": "取得特定的貼文失敗",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "刪除特定的貼文",
+        "description": "",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "貼文編號"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JSON Web Token",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Authorization": {
+                  "type": "string",
+                  "example": ""
+                }
+              },
+              "required": [
+                "Authorization"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "刪除貼文成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "string",
+                  "example": "刪除貼文成功"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "刪除貼文失敗",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/post/{postId}/check": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "驗證是否為有效的貼文",
+        "description": "",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "貼文編號"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JSON Web Token",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Authorization": {
+                  "type": "string",
+                  "example": ""
+                }
+              },
+              "required": [
+                "Authorization"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "驗證成功",
+            "schema": {
+              "type": "string",
+              "example": "OK",
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "驗證失敗",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
     "/post": {
       "post": {
         "tags": [
@@ -907,69 +1075,6 @@
           },
           "400": {
             "description": "移除貼文的按讚失敗",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        },
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ]
-      }
-    },
-    "/post/{postId}": {
-      "delete": {
-        "tags": [
-          "Posts"
-        ],
-        "summary": "刪除特定的貼文",
-        "description": "",
-        "parameters": [
-          {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "貼文編號"
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "JSON Web Token",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Authorization": {
-                  "type": "string",
-                  "example": ""
-                }
-              },
-              "required": [
-                "Authorization"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "刪除貼文成功",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "type": "string",
-                  "example": "刪除貼文成功"
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
-          },
-          "400": {
-            "description": "刪除貼文失敗",
             "schema": {
               "$ref": "#/definitions/Error"
             }

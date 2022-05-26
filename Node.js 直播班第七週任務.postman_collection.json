@@ -408,6 +408,63 @@
 					"response": []
 				},
 				{
+					"name": "取得特定的貼文",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{METAWALL_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/post/628729171e9bb83504e045fc",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"post",
+								"628729171e9bb83504e045fc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "驗證是否為有效的貼文",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{METAWALL_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/post/628729171e9bb83504e045fc/check",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"post",
+								"628729171e9bb83504e045fc",
+								"check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "新增貼文",
 					"request": {
 						"auth": {

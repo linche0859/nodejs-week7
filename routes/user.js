@@ -89,7 +89,7 @@ router.get('/user/:userId/check', auth, (req, res, next) =>
   /**
     #swagger.responses[200] = {
       description: '驗證成功',
-      schema: { data: 'OK' }
+      schema: 'OK'
     }
     #swagger.responses[400] = {
       description: '驗證失敗',

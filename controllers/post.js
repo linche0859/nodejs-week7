@@ -124,6 +124,41 @@ const post = {
       })
     );
   }),
+  // 取得特定的貼文
+  getSpecificPost: asyncHandleError(async (req, res, next) => {
+    const {
+      params: { postId },
+    } = req;
+    if (!(postId && isValidObjectId(postId)))
+      return next(appError(400, '請傳入特定的貼文'));
+
+    const existedPost = await Post.findById(postId)
+      .populate({ path: 'user', select: 'name avatar' })
+      .populate({
+        path: 'messages',
+        populate: {
+          path: 'user',
+          select: 'name avatar',
+        },
+        options: { sort: { createdAt: -1 } },
+      });
+    if (!existedPost) return next(appError(400, '尚未發布貼文'));
+
+    res.status(200).json(getHttpResponseContent(existedPost));
+  }),
+  // 驗證是否為有效的貼文
+  checkPost: asyncHandleError(async (req, res, next) => {
+    const {
+      params: { postId },
+    } = req;
+    if (!(postId && isValidObjectId(postId)))
+      return next(appError(400, '請傳入特定的貼文'));
+
+    const existedPost = await Post.findById(postId);
+    if (!existedPost) return next(appError(400, '尚未發布貼文'));
+
+    res.status(200).json(getHttpResponseContent('OK'));
+  }),
   // 新增貼文
   postOnePost: asyncHandleError(async (req, res, next) => {
     const {

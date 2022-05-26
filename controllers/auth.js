@@ -30,8 +30,7 @@ const auth = {
       });
       user = newUser;
     }
-    const token = await getJWT(user);
-    res.redirect(`${process.env.APP_URL}/?token=${token}`);
+    res.redirect(`${process.env.APP_URL}/?token=${getJWT(user)}`);
   }),
 };
 
