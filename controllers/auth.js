@@ -11,6 +11,7 @@ const auth = {
     } = req;
     const existedEmail = await User.findOne({ email });
     let user = await User.findOne({ email, googleId: sub });
+
     if (existedEmail && !user) {
       return res.redirect(
         `${process.env.APP_URL}?error=${encodeURIComponent(
@@ -29,6 +30,8 @@ const auth = {
       });
       user = newUser;
     }
+    console.log(req.user);
+    console.log(user);
     res.redirect(`${process.env.APP_URL}?token=${getJWT(user)}`);
   }),
 };
