@@ -21,7 +21,7 @@ const auth = {
       });
       user = newUser;
     }
-    res.redirect(`${process.env.APP_URL}/google?token=${getJWT(user)}`);
+    res.redirect(`${process.env.APP_URL}?token=${getJWT(user)}`);
   }),
 };
 
