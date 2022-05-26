@@ -1,8 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-console.log(process.env.GOOGLE_CALLBACK_URL);
-
 passport.use(
   new GoogleStrategy(
     {
