@@ -30,12 +30,8 @@ const auth = {
       });
       user = newUser;
     }
-    console.log(req.user);
-    console.log(user);
     const token = await getJWT(user);
-    console.log(token);
-    console.log(`${process.env.APP_URL}?token=${token}`);
-    res.redirect(`${process.env.APP_URL}?token=${token}`);
+    res.redirect(`${process.env.APP_URL}/?token=${token}`);
   }),
 };
 
