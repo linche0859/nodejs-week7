@@ -14,7 +14,7 @@ const auth = {
 
     if (existedEmail && !user) {
       return res.redirect(
-        `${process.env.APP_URL}?error=${encodeURIComponent(
+        `${process.env.APP_URL}/?error=${encodeURIComponent(
           '帳號已被註冊，請替換新的 Email！'
         )}`
       );
