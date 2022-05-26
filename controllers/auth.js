@@ -9,8 +9,16 @@ const auth = {
     const {
       user: { sub, name, email, picture },
     } = req;
-    let user = await User.findOne({ googleId: sub });
-    if (!user) {
+    const existedEmail = await User.findOne({ email });
+    let user = await User.findOne({ email, googleId: sub });
+    if (existedEmail && !user) {
+      return res.redirect(
+        `${process.env.APP_URL}?error=${encodeURIComponent(
+          '帳號已被註冊，請替換新的 Email！'
+        )}`
+      );
+    }
+    if (!existedEmail) {
       const hash = await getEncryptedPassword(sub);
       const newUser = await User.create({
         name,
