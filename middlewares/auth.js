@@ -19,6 +19,8 @@ const auth = asyncHandleError(async (req, res, next) => {
   if (!decryptedData) return next(appError(401, errorMsg.auth));
 
   const user = await User.findById(decryptedData.id);
+  if (!user) return next(appError(401, errorMsg.auth));
+
   req.user = user;
   next();
 });
