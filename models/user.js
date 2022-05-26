@@ -31,6 +31,7 @@ const schema = new Schema(
     },
     googleId: {
       type: String,
+      default: '',
       select: false,
     },
   },
