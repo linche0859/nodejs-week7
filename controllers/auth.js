@@ -32,7 +32,9 @@ const auth = {
     }
     console.log(req.user);
     console.log(user);
-    res.redirect(`${process.env.APP_URL}?token=${getJWT(user)}`);
+    const token = await getJWT(user);
+    console.log(token);
+    res.redirect(`${process.env.APP_URL}?token=${token}`);
   }),
 };
 
